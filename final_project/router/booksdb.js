@@ -10,5 +10,32 @@ let books = {
       9: {"author": "Honor\u00e9 de Balzac","title": "Le P\u00e8re Goriot", "reviews": {} },
       10: {"author": "Samuel Beckett","title": "Molloy, Malone Dies, The Unnamable, the trilogy", "reviews": {} }
 }
+const getAll = () => Promise.resolve(books);
+const getById = (id) => Promise.resolve(books[id]);
+const getByAuthor = (author) => {
+  const bookRes = []
+  Object.keys(books).forEach(isbn => {
+      if (books[isbn].author == author) {
+        bookRes.push(books[isbn]);
+      }
+  })
+    return Promise.resolve(bookRes)
+};
+const getByTitle = (title) => {
+    const bookRes = []
+    Object.keys(books).forEach(isbn => {
+        if (books[isbn].title == title) {
+          bookRes.push(books[isbn]);
+        }
+    })
+      return Promise.resolve(bookRes)
+  };
 
-module.exports=books;
+module.exports = {
+  getById,
+  getAll,
+  getByAuthor,
+  getByTitle,
+  books
+};
+
